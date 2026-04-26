@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Enviar WhatsApp rápido</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <!-- <style>
+      :root {
+        --green: #25d366;
+        --green-dark: #1ebe5a;
+        font-family:
+          Inter,
+          system-ui,
+          Segoe UI,
+          Roboto,
+          "Helvetica Neue",
+          Arial;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f6f7fb;
+      }
+      .card {
+        width: 420px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(40, 40, 80, 0.08);
+        padding: 18px;
+        text-align: center;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
+      .logo img {
+        width: 22px;
+        height: 22px;
+      }
+      h1 {
+        font-size: 15px;
+        margin: 0 0 12px;
+        color: #1a1a1a;
+        font-weight: 600;
+      }
+      label {
+        display: block;
+        text-align: left;
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 6px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #e6e9f0;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      button {
+        flex: 1;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 0;
+        background: var(--green);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button.secondary {
+        background: transparent;
+        border: 1px solid #e6e9f0;
+        color: #333;
+      }
+      .hint {
+        font-size: 12px;
+        color: #888;
+        margin-top: 10px;
+      }
+      .small {
+        font-size: 12px;
+        color: #444;
+        margin-top: 10px;
+      }
+      .success {
+        color: green;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+      footer {
+        margin-top: 14px;
+        font-size: 11px;
+        color: #aaa;
+      }
+      .input-group {
+        display: flex;
+        gap: 6px;
+        position: relative;
+      }
+
+      .input-group select {
+        width: 90px;
+        border-radius: 8px;
+        border: 1px solid #e6e9f0;
+        padding: 8px;
+        font-size: 14px;
+        background: #fff;
+        cursor: pointer;
+      }
+
+      .input-group input {
+        flex: 1;
+      }
+      .flag-icon {
+        background-image: url(images/ar.svg);
+      }
+      .custom-select {
+        position: relative;
+        width: 130px;
+        cursor: pointer;
+      }
+
+      .selected {
+        border: 1px solid #e6e9f0;
+        padding: 8px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: #fff;
+        font-size: 12px;
+      }
+
+      .options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #e6e9f0;
+        border-radius: 8px;
+        display: none;
+        z-index: 10;
+      }
+
+      .options div {
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+      }
+
+      .options div:hover {
+        background: #f2f2f2;
+      }
+
+      .custom-select img {
+        width: 18px;
+        height: 12px;
+      }
+    </style> -->
+  </head>
+  <body>
+    <main class="card" role="main">
+      <div class="logo">
+        <img
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%2325D366' d='M12 2C6.48 2 2 6.48 2 12c0 1.99.52 3.84 1.42 5.45L2 22l4.7-1.35C8.16 21.48 10.02 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z'/></svg>"
+          alt="wa"
+        />
+        <h1>Enviar WhatsApp rápido</h1>
+      </div>
+
+      <label for="numero">Número (incluye código de país)</label>
+      <div class="input-group">
+        <!-- <select id="pais">
+          <option value="54"><img src="images/ar.svg" />🇦🇷 +54</option>
+          <option value="34">🇪🇸 +34</option>
+          <option value="52">🇲🇽 +52</option>
+          <option value="57">🇨🇴 +57</option>
+          <option value="51">🇵🇪 +51</option>
+          <option value="56">🇨🇱 +56</option>
+          <option value="1">🇺🇸 +1</option>
+        </select> -->
+        <div class="custom-select" id="customSelect">
+          <div class="selected"><img id="selected" src="" /></div>
+
+          <div class="options">
+            <div data-code="54"><img /> Argentina (+54)</div>
+            <div data-code="34"><img /> España (+34)</div>
+            <div data-code="57"><img /> Colombia (+57)</div>
+            <div data-code="1"><img /> Us (+1)</div>
+            <div data-code="52"><img /> México (+52)</div>
+            <div data-code="56"><img /> Chile (+56)</div>
+          </div>
+        </div>
+        <!-- <div class="telefono"> -->
+        <input
+          id="numero"
+          type="text"
+          inputmode="numeric"
+          placeholder="Ej: 1123456789"
+          autocomplete="on"
+        />
+        <div id="historial" class="historial"></div>
+        <!-- </div> -->
+      </div>
+
+      <div class="row">
+        <button id="enviar">Abrir WhatsApp</button>
+        <button id="copiar" class="secondary" title="Copiar número">
+          Copiar
+        </button>
+      </div>
+
+      <div id="msg" class="hint">
+        Puedes presionar <strong>Enter</strong> para enviar.
+      </div>
+      <div id="success" class="success" style="display: none"></div>
+      <footer>
+        Si la página fue abierta como ventana emergente se cerrará
+        automáticamente.
+      </footer>
+    </main>
+    <script src="js/script.js"></script>
+
+    <!-- <script>
+      const input = document.getElementById("numero");
+      const enviarBtn = document.getElementById("enviar");
+      const copiarBtn = document.getElementById("copiar");
+      const msgEl = document.getElementById("msg");
+      const successEl = document.getElementById("success");
+
+      // focus al abrir
+      window.addEventListener("DOMContentLoaded", () => {
+        input.focus();
+        // si viene ?num= en la URL, rellenar y abrir automáticamente
+        const params = new URLSearchParams(location.search);
+        const pre = params.get("num");
+        if (pre) {
+          input.value = pre;
+          // pequeña demora para que el usuario vea el número
+          setTimeout(() => abrirWhatsApp(), 300);
+        }
+      });
+
+      // validar numero básico (al menos 6 dígitos)
+      function validarNumero(n) {
+        const clean = n.replace(/\D/g, "");
+        return clean.length >= 6 ? clean : null;
+      }
+
+      function abrirWhatsApp() {
+        //const raw = input.value.trim();
+        const pais = document.getElementById("pais").value;
+        const numeroLocal = input.value.trim();
+        const raw = pais + numeroLocal;
+        const clean = validarNumero(raw);
+        if (!clean) {
+          alert("Por favor ingresa un número válido (incluye código de país).");
+          input.focus();
+          return;
+        }
+        const url = `https://wa.me/${encodeURIComponent(clean)}`;
+        // abrir en pestaña nueva
+        window.open(url, "_blank");
+
+        // mostrar feedback
+        successEl.textContent = `Abriendo chat con +${clean}`;
+        successEl.style.display = "block";
+
+        // si la página fue abierta por script como una ventana emergente, intentar cerrarla
+        // la ventana se podrá cerrar sólo si window.opener existe o si fue creada por window.open
+        setTimeout(() => {
+          try {
+            window.close();
+          } catch (e) {
+            /* no fais */
+          }
+        }, 350);
+      }
+
+      enviarBtn.addEventListener("click", abrirWhatsApp);
+
+      // enviar con Enter
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") abrirWhatsApp();
+      });
+      // también Enter desde cualquier parte
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && document.activeElement !== copiarBtn) {
+          // evita doble acción si el foco está en el copiarBtn
+          abrirWhatsApp();
+        }
+      });
+
+      // copiar numero limpia y copia al portapapeles
+      copiarBtn.addEventListener("click", async () => {
+        const raw = input.value.trim();
+        const clean = validarNumero(raw);
+        if (!clean) {
+          alert("Ingresa un número válido para copiar.");
+          input.focus();
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(clean);
+          msgEl.textContent = "Número copiado al portapapeles.";
+          setTimeout(
+            () => (msgEl.textContent = "Puedes presionar Enter para enviar."),
+            1500,
+          );
+        } catch (err) {
+          alert("No se pudo copiar. Usa Ctrl+C para copiar manualmente.");
+        }
+      });
+      let codigoPais = "54"; // default
+
+      const select = document.getElementById("customSelect");
+      const selected = select.querySelector(".selected");
+      const options = select.querySelector(".options");
+
+      selected.addEventListener("click", () => {
+        options.style.display =
+          options.style.display === "block" ? "none" : "block";
+      });
+
+      options.querySelectorAll("div").forEach((opt) => {
+        opt.addEventListener("click", () => {
+          codigoPais = opt.dataset.code;
+          selected.innerHTML = opt.innerHTML;
+          options.style.display = "none";
+        });
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const locale = navigator.language || navigator.userLanguage; // ej: "es-AR"
+        console.log(locale);
+        const pais = locale.split("-")[1]; // "AR"
+
+        const mapa = {
+          AR: "54",
+          ES: "34",
+          MX: "52",
+          CO: "57",
+          PE: "51",
+          CL: "56",
+          US: "1",
+        };
+
+        // const codigo = mapa[pais];
+
+        // if (codigo) {
+        //   //const select = document.getElementById("pais");
+        //   //select.value = codigo;
+        //   console.log(codigo);
+        // }
+
+        //document.getElementById("numero").focus();
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        const mapaTZ = {
+          "America/Buenos_Aires": "54",
+          "Europe/Madrid": "34",
+          "America/Mexico_City": "52",
+          "America/Bogota": "57",
+          "America/Lima": "51",
+          "America/Santiago": "56",
+          "America/New_York": "1",
+        };
+
+        const codigo = mapaTZ[tz];
+
+        if (codigo) {
+          document.querySelector(".selected").textContent = codigo;
+          console.log(codigo);
+        }
+      });
+    </script> -->
+  </body>
+</html>
