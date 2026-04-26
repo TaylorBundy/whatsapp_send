@@ -134,7 +134,6 @@ function abrirWhatsApp() {
   // si la página fue abierta por script como una ventana emergente, intentar cerrarla
   // la ventana se podrá cerrar sólo si window.opener existe o si fue creada por window.open
   setTimeout(() => {
-    alert("hola");
     try {
       window.close();
     } catch (e) {
